@@ -1,0 +1,5 @@
+[29-Jul-2018 15:58:41 America/Chicago] PHP Warning:  include(emailaddstatus/contact.class.php): failed to open stream: No such file or directory in /home3/kdkac/public_html/traveljolly.com/api/base.php on line 19
+[29-Jul-2018 15:58:41 America/Chicago] PHP Warning:  include(emailaddstatus/contact.class.php): failed to open stream: No such file or directory in /home3/kdkac/public_html/traveljolly.com/api/base.php on line 19
+[29-Jul-2018 15:58:41 America/Chicago] PHP Warning:  include(): Failed opening 'emailaddstatus/contact.class.php' for inclusion (include_path='.:/opt/php55/lib/php') in /home3/kdkac/public_html/traveljolly.com/api/base.php on line 19
+[29-Jul-2018 15:58:41 America/Chicago] PHP Fatal error:  Class 'contact' not found in /home3/kdkac/public_html/traveljolly.com/api/emailaddstatus/index.php on line 35
+[29-Jul-2018 15:59:29 America/Chicago] PHP Fatal error:  Call to undefined method emailaddstatus::getSelectFields() in /home3/kdkac/public_html/traveljolly.com/api/emailaddstatus/index.php on line 42

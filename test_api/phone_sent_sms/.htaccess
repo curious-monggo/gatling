@@ -1,0 +1,11 @@
+# Options -Indexes
+RewriteEngine On
+# RewriteRule ^$ index.php 
+# RewriteRule ^((?!(.|.php)).)*$ $0.php 
+# RewriteRule ^(.*) index.php?id=$1
+# RewriteCond %{THE_REQUEST} \s/phone_sent_sms/?\?id=([a-zA-Z0- 9_-]*)\s [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*) index.php?id=$1
+# RewriteRule ^(.*)/?$ index.php?id=$1 [L]
+# RewriteRule ^sentsms/([0-9]+)/?$ index.php?id=$1 [NC,L]  
