@@ -1,6 +1,6 @@
 <?php
 include('../tjentity.class.php');
-class tj_visit extends TJEntity {
+class tj_visit extends GatlingEntity {
 
     public $rid;
     public $created_ts; 

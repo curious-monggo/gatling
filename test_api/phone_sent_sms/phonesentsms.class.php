@@ -1,6 +1,6 @@
 <?php
 include('../tjentity.class.php');
-class phonesentsms extends TJEntity {
+class phonesentsms extends GatlingEntity {
 
     public $affiliate_activity_country; 
     public $affiliate_activity_language; 

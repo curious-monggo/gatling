@@ -1,6 +1,6 @@
 <?php
 include('../tjentity.class.php');
-class phonestatus extends TJEntity {
+class phonestatus extends GatlingEntity {
 
     public $prospect_email;
     public $prospect_phone;

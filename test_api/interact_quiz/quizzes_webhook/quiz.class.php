@@ -1,6 +1,6 @@
 <?php
 include('../tjentity.class.php');
-class quiz extends TJEntity {
+class quiz extends GatlingEntity {
 
     public $contact_id;
     public $email; 

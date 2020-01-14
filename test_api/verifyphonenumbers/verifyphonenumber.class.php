@@ -1,6 +1,6 @@
 <?php
 include('../tjentity.class.php');
-class verifyphonenumber extends TJEntity {
+class verifyphonenumber extends GatlingEntity {
 
     public $created_ts;
     public $valid;

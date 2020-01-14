@@ -1,5 +1,5 @@
 <?php
-class TJConfig {
+class GatlingConfig {
 	var $offline = '0';
 	var $editor = 'tinymce';
 	var $list_limit = '20';

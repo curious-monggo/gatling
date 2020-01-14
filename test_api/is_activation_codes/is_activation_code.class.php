@@ -1,6 +1,6 @@
 <?php
 include('../tjentity.class.php');
-class is_activation_code extends TJEntity {
+class is_activation_code extends GatlingEntity {
 
     public $changed_ts;
     public $activation_code;
@@ -68,7 +68,7 @@ class is_activation_code extends TJEntity {
     }
     function getSelectClause($conn, $tjEntity, $numberToReturn) {
         //$tjEntity is here only because php won't allow multiple function signatures
-        //refactor this function in all TJEntity derived classes to remove parm $tjEntity
+        //refactor this function in all GatlingEntity derived classes to remove parm $tjEntity
         if (isset($this-> rows)) {
             $numberToReturn = $this-> rows;
         }

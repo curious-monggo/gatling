@@ -1,6 +1,6 @@
 <?php
 include('../tjentity.class.php');
-class phonerequests extends TJEntity {
+class phonerequests extends GatlingEntity {
 
     public $request_format;
     public $affiliate_longitude; 
