@@ -1,22 +1,22 @@
 <?php
-abstract class TJEntity {
+abstract class GatlingEntity {
 
 
     public $className;
     public $tableName;
-    public $servername = "tj-db-instance.cujlwyt0hcdy.us-east-1.rds.amazonaws.com";
+    public $servername = "localhost";
     public $username = "root";
-    public $password = "TJp!234567";
-    public $dbname = "traveljolly";
+    public $password = "";
+    public $dbname = "gatling";
     public $whereClause;
     public $rid;
     public $create_ts;
     public $guid;
 
     function __construct() {
-        $this->className = "TJEntity";
+        $this->className = "GatlingEntity";
     }
-    function getSelectClause ($conn, $tjEntity, $numberToReturn) {
+    function getSelectClause ($conn, $gatlingEntity, $numberToReturn) {
         throw new Exception('getSelectClause method not implemented.');
     }
     function getInsertClause ($payload) {
@@ -35,33 +35,16 @@ abstract class TJEntity {
                 throw new Exception("How about some data dude.");
             };
 
-
-    //url formate like http://traveljolly.com/api/phone_status/rjr@traveljolly.com&val=test&name=aname&third=3
-        //Entered val GET: test x</br>Entered val POST:  x</br>querystring: id=rjr@traveljolly.com&val=test&name=aname&third=3 x</br>Array
-                // (
-                //     [id] => rjr@traveljolly.com
-                //     [val] => test
-                //     [name] => aname
-                //     [third] => 3
-                // )
-                //params: 1 x</br>
-            // $queryParams = undefined;
-            // parse_str($_SERVER['QUERY_STRING'], $queryParams);
-            // echo "Entered val GET: ".$_GET['val']." x</br>";
-            // echo "Entered val POST: ".$_POST['val']." x</br>";
-            // echo "querystring: ".$_SERVER['QUERY_STRING']." x</br>";
-            // echo "params: ".print_r($queryParams)." x</br>";
-            
         }
         catch(Exception $exception) {
             throw $exception;
         }
 
     }
-    function doPost($payload, $tjEntity) {
+    function doPost($payload, $gatlingEntity) {
         throw new Exception("function not implemented");
     }
-    function Fetch($tjEntity) {
+    function Fetch($gatlingEntity) {
         throw new Exception("function not implemented");
     }
     function Retrieve() {
