@@ -1,5 +1,5 @@
 <?php
-include('../tjentity.class.php');
+include('../gatlingentity.class.php');
 class verifyphonenumber extends GatlingEntity {
 
     public $created_ts;

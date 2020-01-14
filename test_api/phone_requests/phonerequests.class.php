@@ -1,5 +1,5 @@
 <?php
-include('../tjentity.class.php');
+include('../gatlingentity.class.php');
 class phonerequests extends GatlingEntity {
 
     public $request_format;

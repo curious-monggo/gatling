@@ -1,6 +1,6 @@
 <?php
 //might want to include a base entity in the future include('../infusionsoftentity.class.php');
-include('../tjentity.class.php');
+include('../gatlingentity.class.php');
 class tj_commission extends GatlingEntity {
 
     public $rid;

@@ -1,5 +1,5 @@
 <?php
-include('../tjentity.class.php');
+include('../gatlingentity.class.php');
 class quiz extends GatlingEntity {
 
     public $contact_id;

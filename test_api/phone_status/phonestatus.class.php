@@ -1,5 +1,5 @@
 <?php
-include('../tjentity.class.php');
+include('../gatlingentity.class.php');
 class phonestatus extends GatlingEntity {
 
     public $prospect_email;

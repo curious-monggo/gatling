@@ -1,5 +1,5 @@
 <?php
-include('../tjentity.class.php');
+include('../gatlingentity.class.php');
 class tj_business_partner extends GatlingEntity {
 
     public $created_ts;

@@ -1,5 +1,5 @@
 <?php
-include('../tjentity.class.php');
+include('../gatlingentity.class.php');
 class is_activation_code extends GatlingEntity {
 
     public $changed_ts;
