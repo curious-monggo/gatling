@@ -1,6 +1,0 @@
-[13-Aug-2018 16:09:52 America/Chicago] PHP Fatal error:  Call to a member function dsAdd() on a non-object in /home3/kdkac/public_html/traveljolly.com/api/notes/index.php on line 15
-[13-Aug-2018 16:10:42 America/Chicago] PHP Warning:  Illegal string offset 'Id' in /home3/kdkac/public_html/traveljolly.com/api/notes/index.php on line 19
-[13-Aug-2018 16:12:24 America/Chicago] PHP Warning:  Illegal string offset 'Id' in /home3/kdkac/public_html/traveljolly.com/api/notes/index.php on line 19
-[13-Aug-2018 16:16:47 America/Chicago] PHP Warning:  Illegal string offset 'Id' in /home3/kdkac/public_html/traveljolly.com/api/notes/index.php on line 19
-[13-Aug-2018 16:18:10 America/Chicago] PHP Warning:  Illegal string offset 'Id' in /home3/kdkac/public_html/traveljolly.com/api/notes/index.php on line 19
-[13-Aug-2018 16:51:44 America/Chicago] PHP Parse error:  syntax error, unexpected 'catch' (T_CATCH) in /home3/kdkac/public_html/traveljolly.com/api/notes/index.php on line 23
