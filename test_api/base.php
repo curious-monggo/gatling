@@ -214,15 +214,6 @@ function isAuthorized($token)
         return TRUE;
     }  
     return FALSE;
-        // if(){
-    //     defineIfsConfig(
-    //         'lf465',
-    //         'c157e1313f98335fbdadf8f125d7b187'
-    //     );
-    //     return TRUE;
-    // }
-    // return FALSE;
-    // var_export(getCompany('lf465'));
 }
         
 
