@@ -10,106 +10,106 @@ function defineIfsConfig($app_name, $infusionsoft_api_key){
     define("INFUSIONSOFT_API_KEY", $infusionsoft_api_key);
 }
 
-function CreatePayByText_autoloader($class) {
-    include 'CreatePayByText/' . $class . '.class.php';
-}
-function tj_phone_requests_autoloader($class) {
-    include 'phone_requests/' . $class . '.class.php';
-}
-function tj_phone_sent_sms_autoloader($class) {
-    include 'phone_sent_sms/' . $class . '.class.php';
-}
-function tj_phone_status_autoloader($class) {
-    include 'phone_status/' . $class . '.class.php';
-}
+// function CreatePayByText_autoloader($class) {
+//     include 'CreatePayByText/' . $class . '.class.php';
+// }
+// function tj_phone_requests_autoloader($class) {
+//     include 'phone_requests/' . $class . '.class.php';
+// }
+// function tj_phone_sent_sms_autoloader($class) {
+//     include 'phone_sent_sms/' . $class . '.class.php';
+// }
+// function tj_phone_status_autoloader($class) {
+//     include 'phone_status/' . $class . '.class.php';
+// }
 function contacts_autoloader($class) { 
     include 'contacts/' . $class . '.class.php';
 }
-function country_autoloader($class) { 
-    include 'country/' . $class . '.class.php';
-}
-function aff_info_autoloader($class) { 
-    include 'aff_info/' . $class . '.class.php';
-}
-function begc_login_autoloader($class) { 
-    include 'begc_login/' . $class . '.class.php';
-}
-function phone2_autoloader($class) { 
-    include 'phone2/' . $class . '.class.php';
-}
-function emailaddstatus_autoloader($class) {
-    include 'emailaddstatus/' . $class . '.class.php';
-}
-function affiliates_autoloader($class) {
-    include 'affiliates/' . $class . '.class.php';
-}
-function ld_affiliates_autoloader($class) {
-    include 'ld_affiliates/' . $class . '.class.php';
-}
-function referrals_autoloader($class) {
-    include 'referrals/' . $class . '.class.php';
-}
-function notes_autoloader($class) {
-    include 'notes/' . $class . '.class.php';
-}
-function tj_activation_code_autoloader($class) {
-    include 'activation_codes/' . $class . '.class.php';
-}
-/*LEO*/
-function tj_is_activation_code_autoloader($class) {
-    include 'is_activation_codes/' . $class . '.class.php';
-}
+// function country_autoloader($class) { 
+//     include 'country/' . $class . '.class.php';
+// }
+// function aff_info_autoloader($class) { 
+//     include 'aff_info/' . $class . '.class.php';
+// }
+// function begc_login_autoloader($class) { 
+//     include 'begc_login/' . $class . '.class.php';
+// }
+// function phone2_autoloader($class) { 
+//     include 'phone2/' . $class . '.class.php';
+// }
+// function emailaddstatus_autoloader($class) {
+//     include 'emailaddstatus/' . $class . '.class.php';
+// }
+// function affiliates_autoloader($class) {
+//     include 'affiliates/' . $class . '.class.php';
+// }
+// function ld_affiliates_autoloader($class) {
+//     include 'ld_affiliates/' . $class . '.class.php';
+// }
+// function referrals_autoloader($class) {
+//     include 'referrals/' . $class . '.class.php';
+// }
+// function notes_autoloader($class) {
+//     include 'notes/' . $class . '.class.php';
+// }
+// function tj_activation_code_autoloader($class) {
+//     include 'activation_codes/' . $class . '.class.php';
+// }
+// /*LEO*/
+// function tj_is_activation_code_autoloader($class) {
+//     include 'is_activation_codes/' . $class . '.class.php';
+// }
 
-function tj_is_activation_code_clone_autoloader($class) {
-    include 'is_activation_codes_clone/' . $class . '.class.php';
-}
+// function tj_is_activation_code_clone_autoloader($class) {
+//     include 'is_activation_codes_clone/' . $class . '.class.php';
+// }
 
-function tj_begc_activation_codes_autoloader($class) {
-    include 'begc_activation_codes/' . $class . '.class.php';
-}
-function tj_activation_codes_expiry_autoloader($class) {
-    include 'activation_codes_expiry/' . $class . '.class.php';
-}
-function payments_autoloader($class) {
-    include 'payments/' . $class . '.class.php';
-}
-function parsey_autoloader($class) {
-    include 'parsey/' . $class . '.class.php';
-}
-function contactgroups_autoloader($class) { 
-    include 'contactgroups/' . $class . '.class.php';
-}
-function contactactions_autoloader($class) { 
-    include 'contactactions/' . $class . '.class.php';
-}
-function ld_purchases_autoloader($class) {
-    include 'ld_purchases/' . $class . '.class.php';
-}
-function ld_commissions_autoloader($class) {
-    include 'ld_commissions/' . $class . '.class.php';
-}
-function quizzes_autoloader($class) {
-    include 'quizzes/' . $class . '.class.php';
-}
-//added this line to support new folder, interact quiz on 21/09/2019
-function interact_quiz_autoloader($class) {
-    include 'interact_quiz/' . $class . '.class.php';
-}
-function tj_visits_autoloader($class) {
-    include 'tj_visits/' . $class . '.class.php';
-}
-function ccharges_autoloader($class) {
-    include 'ccharges/' . $class . '.class.php';
-}
-function invoicepayments_autoloader($class) {
-    include 'invoicepayments/' . $class . '.class.php';
-}
-function verifyphonenumbers_autoloader($class) {
-    include 'verifyphonenumbers/' . $class . '.class.php';
-}
-function tj_business_partners_autoloader($class) {
-    include 'tj_business_partners/' . $class . '.class.php';
-}
+// function tj_begc_activation_codes_autoloader($class) {
+//     include 'begc_activation_codes/' . $class . '.class.php';
+// }
+// function tj_activation_codes_expiry_autoloader($class) {
+//     include 'activation_codes_expiry/' . $class . '.class.php';
+// }
+// function payments_autoloader($class) {
+//     include 'payments/' . $class . '.class.php';
+// }
+// function parsey_autoloader($class) {
+//     include 'parsey/' . $class . '.class.php';
+// }
+// function contactgroups_autoloader($class) { 
+//     include 'contactgroups/' . $class . '.class.php';
+// }
+// function contactactions_autoloader($class) { 
+//     include 'contactactions/' . $class . '.class.php';
+// }
+// function ld_purchases_autoloader($class) {
+//     include 'ld_purchases/' . $class . '.class.php';
+// }
+// function ld_commissions_autoloader($class) {
+//     include 'ld_commissions/' . $class . '.class.php';
+// }
+// function quizzes_autoloader($class) {
+//     include 'quizzes/' . $class . '.class.php';
+// }
+// //added this line to support new folder, interact quiz on 21/09/2019
+// function interact_quiz_autoloader($class) {
+//     include 'interact_quiz/' . $class . '.class.php';
+// }
+// function tj_visits_autoloader($class) {
+//     include 'tj_visits/' . $class . '.class.php';
+// }
+// function ccharges_autoloader($class) {
+//     include 'ccharges/' . $class . '.class.php';
+// }
+// function invoicepayments_autoloader($class) {
+//     include 'invoicepayments/' . $class . '.class.php';
+// }
+// function verifyphonenumbers_autoloader($class) {
+//     include 'verifyphonenumbers/' . $class . '.class.php';
+// }
+// function tj_business_partners_autoloader($class) {
+//     include 'tj_business_partners/' . $class . '.class.php';
+// }
 
 $method = $_SERVER['REQUEST_METHOD'];
 
