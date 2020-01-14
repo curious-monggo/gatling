@@ -1,5 +1,5 @@
 <?php 
-echo "login page";
+//echo "login page";
 ?>
 <!DOCTYPE html>
 <html>

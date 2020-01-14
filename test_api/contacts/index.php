@@ -125,6 +125,66 @@ function Get() {
    // echo "pathinfo:".$_SERVER["PATH_INFO"];
    // $url_elements = explode('/', $_SERVER['PATH_INFO']);
    // echo "uri:".print_r($url_elements);
+    // try {
+        $payload = getPayload();
+
+        $result = GetContact('Id', $payload['id']);
+
+        // spl_autoload_register('contacts_autoloader');
+        // $tjEntity = new contact();
+        // $app = new iSDK;
+        // $app->cfgCon("connection");
+
+        // $queryParams = "";
+        // $queryString = $_SERVER['QUERY_STRING'];
+        // if (array_key_exists('id', $_GET)) { 
+        //     if (empty($_GET['id'])) {
+        //     //if id not set remove from querystring
+        //     $queryString = str_replace('id=&', '', $queryString);
+        //     } 
+        // }
+        // $queryString = str_replace('path=', '', $queryString);
+        // $queryParams = getUrlParms($queryString);
+        // //echo "qs: ".print_r($queryString);
+        // //$returnFields = array('Id','FirstName','LastName','Email','Phone1', 'Phone1Type', 'Groups', 'LeadSource', "_AFFemail", '_AFFphone', '_GiftCardPin');
+        // $excludeCustomFields = TRUE;
+        // $returnFields = $tjEntity->getSelectFieldsArray($excludeCustomFields);
+        // if ($excludeCustomFields) {//so get custom fields from api
+        //     $returnCustomFields = array('DataType', 'DefaultValue', 'FormId','GroupId', 'Id', 'Label', 'ListRows', 'Name', 'Values');
+	    //     $queryCustomFields = array('FormId' => -1);
+        //     $customFields = $app->dsQuery("DataFormField",100,0,$queryCustomFields,$returnCustomFields);
+        //     //echo "customFields: ".print_r($customFields);
+        //     foreach ($customFields as $key=>$val)
+        //     {
+        //         //if ($key["Name"] == "Name")
+        //             $returnFields[] = "_".$val["Name"];
+        //     }
+        // }
+        // $query = $queryParams;
+        // //echo "<br>query = ".print_r($returnFields)."<br>";
+        // $result = $app->dsQuery("Contact",100,0,$query,$returnFields);
+
+        // //echo "queryparms: ".print_r($queryParams)." x</br>";
+        // // echo "Entered val GET: ".$_GET['val']." x</br>";
+        // // echo "Entered val POST: ".$_POST['val']." x</br>";
+        // // echo "querystring: ".$_SERVER['QUERY_STRING']." x</br>";
+        // // echo "params: ".print_r($queryParams)." x</br>";
+        // // echo "properties: ".$tjEntity->getSelectClause()." x</br>";
+
+
+    // }
+    // catch(Exception $exception) {
+    //      ouputHeader("400", "Bad Request");
+    //      returnResponse("error: " . $exception->getMessage());
+    //  }
+     
+    returnResponse($result);
+}
+function Delete() {
+    ouputHeader("405", "Method Not Allowed");
+}
+function GetContact($field_name, $field_value) {
+
     try {
         
         spl_autoload_register('contacts_autoloader');
@@ -132,53 +192,23 @@ function Get() {
         $app = new iSDK;
         $app->cfgCon("connection");
 
-        $queryParams = "";
-        $queryString = $_SERVER['QUERY_STRING'];
-        if (array_key_exists('id', $_GET)) { 
-            if (empty($_GET['id'])) {
-            //if id not set remove from querystring
-            $queryString = str_replace('id=&', '', $queryString);
-            } 
-        }
-        $queryString = str_replace('path=', '', $queryString);
-        $queryParams = getUrlParms($queryString);
-        //echo "qs: ".print_r($queryString);
-        //$returnFields = array('Id','FirstName','LastName','Email','Phone1', 'Phone1Type', 'Groups', 'LeadSource', "_AFFemail", '_AFFphone', '_GiftCardPin');
-        $excludeCustomFields = TRUE;
-        $returnFields = $tjEntity->getSelectFieldsArray($excludeCustomFields);
-        if ($excludeCustomFields) {//so get custom fields from api
-            $returnCustomFields = array('DataType', 'DefaultValue', 'FormId','GroupId', 'Id', 'Label', 'ListRows', 'Name', 'Values');
-	        $queryCustomFields = array('FormId' => -1);
-            $customFields = $app->dsQuery("DataFormField",100,0,$queryCustomFields,$returnCustomFields);
-            //echo "customFields: ".print_r($customFields);
-            foreach ($customFields as $key=>$val)
-            {
-                //if ($key["Name"] == "Name")
-                    $returnFields[] = "_".$val["Name"];
-            }
-        }
-        $query = $queryParams;
-        //echo "<br>query = ".print_r($returnFields)."<br>";
+        $returnFields = array(
+            'Id',
+            'FirstName',
+            'LastName',
+        );
+        $query =array($field_name => $field_value);
+        //echo "ReturnFields=>".print_r($returnFields);
+        //echo "query=> ".print_r($query);
+
         $result = $app->dsQuery("Contact",100,0,$query,$returnFields);
 
-        //echo "queryparms: ".print_r($queryParams)." x</br>";
-        // echo "Entered val GET: ".$_GET['val']." x</br>";
-        // echo "Entered val POST: ".$_POST['val']." x</br>";
-        // echo "querystring: ".$_SERVER['QUERY_STRING']." x</br>";
-        // echo "params: ".print_r($queryParams)." x</br>";
-        // echo "properties: ".$tjEntity->getSelectClause()." x</br>";
-
-
+        //echo "result=> ".print_r($result);
+        return $result;
     }
     catch(Exception $exception) {
          ouputHeader("400", "Bad Request");
-         returnResponse("error: " . $exception->getMessage());
+         returnResponse("error=> " . $exception->getMessage());
      }
-     
-    returnResponse($result);
 }
-function Delete() {
-    ouputHeader("405", "Method Not Allowed");
-}
-
 ?>

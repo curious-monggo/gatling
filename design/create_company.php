@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.php');
 	exit();
 } else {
-	echo " login user:".$_SESSION['email'];
+	//echo " login user:".$_SESSION['email'];
 }
 if(isset($_POST['company_name'], $_POST['company_code'], $_POST['infusionsoft_key'])){
 	if(createCompany($_POST['company_name'], $_POST['company_code'], $_POST['infusionsoft_key'])){
@@ -129,7 +129,7 @@ if(isset($_POST['company_name'], $_POST['company_code'], $_POST['infusionsoft_ke
 	                <div class="input-group-prepend">
 	                  <span class="input-group-text"><i class="ni ni-key-25"></i></span>
 	                </div>
-	                <input name="infusionsoft_key" class="form-control" placeholder="Infusionsoft API Key" type="text">
+	                <input name="infusionsoft_key" class="form-control" placeholder="Infusionsoft API Key" type="password">
 	              </div>
 	            </div>
 	          </div>

@@ -11,7 +11,7 @@ if ( mysqli_connect_errno() ) {
 	// If there is an error with the connection, stop the script and display the error.
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 } else {
-	echo 'connect Success';
+	//echo 'connect Success';
 }
 
 ?>

@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.php');
 	exit();
 } else {
-	echo " login user:".$_SESSION['email'];
+	//echo " login user:".$_SESSION['email'];
 }
 // if(isset($_GET['company_id'])){
 // 	if(getCompany($_GET['company_id'])){
@@ -153,7 +153,7 @@ if(isset($_POST['save'])){
 		                <div class='input-group-prepend'>
 		                  <span class='input-group-text'><i class='ni ni-key-25'></i></span>
 		                </div>
-		                <input name='infusionsoft_key' class='form-control' placeholder='Infusionsoft API Key' value='".$company['infusionsoft_key']."' type='text'>
+		                <input name='infusionsoft_key' class='form-control' placeholder='Infusionsoft API Key' value='".$company['infusionsoft_key']."' type='password'>
 		              </div>
 		            </div>
 		          </div>

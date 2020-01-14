@@ -5,6 +5,11 @@ error_reporting(0);
 require 'configuration.php';
 require '../../search/iSDK/isdk.php';
 
+function defineIfsConfig($app_name, $infusionsoft_api_key){
+    define("APP_NAME",$app_name);
+    define("INFUSIONSOFT_API_KEY", $infusionsoft_api_key);
+}
+
 function CreatePayByText_autoloader($class) {
     include 'CreatePayByText/' . $class . '.class.php';
 }
@@ -116,15 +121,17 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if (isset($_SERVER['HTTP_AUTHORIZATION']) && $_SERVER['HTTP_AUTHORIZATION'] != "")
 {
+    
     if (isAuthorized($_SERVER['HTTP_AUTHORIZATION'])) {
         route($method);
     }
     else {
-        ouputHeader("401", "Not Authorized(under maintenance)");
+        ouputHeader("401", "Not Authorized");
         //throw new Exception("Not Authorized");
     }
 }else{
-    route($method);
+    ouputHeader("401", "Not Authorized");
+    //route($method);
 }
 
 function route($method) {
@@ -150,17 +157,78 @@ function route($method) {
 function isAuthorized($token)
 {
     $validTokens = array(
-        'fc0eb8ab9c9c40469c560468bdc2621b', 
-        '9ede1558b5164d4aaeab17c0b97a2514', 
-        '9a88b64f687d4c1f84af75db092a9c47', 
-        '313e89399d1f40c292cefd333873fa0d',
-        '0f78b1973fc94aff98216851f037ee0d');
-    if(in_array($token, $validTokens))
+        'Bearer xa403', 
+        'Bearer lf465', 
+        'Bearer 9a88b64f687d4c1f84af75db092a9c47', 
+        'Bearer 313e89399d1f40c292cefd333873fa0d',
+        'Bearer 0f78b1973fc94aff98216851f037ee0d');
+
+        
+
+        function getCompany($code){
+            // Try and connect using the info above.
+            $con = mysqli_connect('localhost', 'root', '', 'gatling');
+            if ( mysqli_connect_errno() ) {
+                // If there is an error with the connection, stop the script and display the error.
+                die ('Failed to connect to MySQL: ' . mysqli_connect_error());
+            } else {
+                //echo 'connect Success';
+            }
+            if ($stmt = $con->prepare('SELECT id, name, code, infusionsoft_key FROM companies WHERE code = ?')) {
+                // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+                $stmt->bind_param('s', $code);
+                $stmt->execute();
+                // Store the result so we can check if the company exists in the database.
+                $result = $stmt->get_result();
+                if ($result->num_rows > 0) {
+                    //create array and object
+                    $company = [];
+                    
+                    while($row = $result->fetch_assoc()) {
+                        $company['id'] = $row['id'];
+                        $company['name'] = $row['name'];
+                        $company['code'] = $row['code'];
+                        $company['infusionsoft_key'] = $row['infusionsoft_key'];
+                    }
+                    return $company;
+                } else {
+                    //empty, show blank 
+                    // return false;
+                }
+                $stmt->close();
+            } else {
+                // return false;
+            }
+        }
+    // if(in_array($token, $validTokens))
+    // {
+    //     var_export(getCompany('lf465'));
+    //     defineIfsConfig(
+    //         'lf465',
+    //         'c157e1313f98335fbdadf8f125d7b187'
+    //     );
+    //     return TRUE;
+    // }  
+    $cleanedToken = str_replace("Bearer ", "", $token);
+    if($company = getCompany($cleanedToken))
     {
+        //var_export(getCompany('lf465'));
+        defineIfsConfig(
+            $company['code'],
+            $company['infusionsoft_key']
+        );
         return TRUE;
     }  
-
     return FALSE;
+        // if(){
+    //     defineIfsConfig(
+    //         'lf465',
+    //         'c157e1313f98335fbdadf8f125d7b187'
+    //     );
+    //     return TRUE;
+    // }
+    // return FALSE;
+    // var_export(getCompany('lf465'));
 }
         
 

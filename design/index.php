@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.php');
 	exit();
 } else {
-	echo " login user:".$_SESSION['email'];
+	//echo " login user:".$_SESSION['email'];
 }
 // var_dump(getCompanyList());
 ?>

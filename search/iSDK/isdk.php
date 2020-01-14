@@ -27,9 +27,10 @@ public function cfgCon($name,$dbOn="on") {
 
   if (!empty($details[$name])) {
     if ($details[$name][2]=="i") {
-      $this->client = new xmlrpc_client("https://lf465.infusionsoft.com/api/xmlrpc");
+        //$this->client = new xmlrpc_client("https://$appname.infusionsoft.com/api/xmlrpc");
+      $this->client = new xmlrpc_client("https://".APP_NAME.".infusionsoft.com/api/xmlrpc");
     } elseif ($details[$name][2]=="m") {
-      $this->client = new xmlrpc_client("https://lf465.mortgageprocrm.com/api/xmlrpc");
+      $this->client = new xmlrpc_client("https://".APP_NAME.".mortgageprocrm.com/api/xmlrpc");
     } else {
         throw new Exception("Invalid configuration for name: \"" . $name . "\"");
     }
