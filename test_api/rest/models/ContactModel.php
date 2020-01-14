@@ -35,7 +35,7 @@ class ContactModel extends BaseModel
             spl_autoload_register(function ($class) {
                 include '../contacts/' . $class . '.class.php';
             });
-            $tjEntity = new contact();
+            $gatlingEntity = new contact();
 
             $app = new iSDK;
             $app->cfgCon("connection");
@@ -57,7 +57,7 @@ class ContactModel extends BaseModel
             //echo "parms:".print_r($queryParams);
             //$returnFields = array('Id','FirstName','LastName','Email','Phone1', 'Phone1Type', 'Groups', 'LeadSource', "_AFFemail", '_AFFphone', '_GiftCardPin');
             $excludeCustomFields = TRUE;
-            $returnFields = $tjEntity->getSelectFieldsArray($excludeCustomFields);
+            $returnFields = $gatlingEntity->getSelectFieldsArray($excludeCustomFields);
             if ($excludeCustomFields) {//so get custom fields from api
                 $returnCustomFields = array('DataType', 'DefaultValue', 'FormId','GroupId', 'Id', 'Label', 'ListRows', 'Name', 'Values');
                 $queryCustomFields = array('FormId' => -1);

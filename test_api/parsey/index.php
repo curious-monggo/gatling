@@ -7,7 +7,7 @@ require '../base.php';
 function Post() {
 
     spl_autoload_register('parsey_autoloader');
-    $tjEntity = new parsey();
+    $gatlingEntity = new parsey();
 
     $payload = "";
     try {

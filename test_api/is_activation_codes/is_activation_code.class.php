@@ -66,9 +66,9 @@ class is_activation_code extends GatlingEntity {
 //echo "sql:".$sql;
         return $sql;
     }
-    function getSelectClause($conn, $tjEntity, $numberToReturn) {
-        //$tjEntity is here only because php won't allow multiple function signatures
-        //refactor this function in all GatlingEntity derived classes to remove parm $tjEntity
+    function getSelectClause($conn, $gatlingEntity, $numberToReturn) {
+        //$gatlingEntity is here only because php won't allow multiple function signatures
+        //refactor this function in all GatlingEntity derived classes to remove parm $gatlingEntity
         if (isset($this-> rows)) {
             $numberToReturn = $this-> rows;
         }

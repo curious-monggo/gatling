@@ -37,7 +37,7 @@ function Post() {
 }
 function writeTJCommission() {
     spl_autoload_register('ld_commissions_autoloader');
-    $tjEntity = new tj_commission();
+    $gatlingEntity = new tj_commission();
     $tjpayload = getPayload();
     if (isset($tjpayload["currency"]))
         unset($tjpayload["currency"]);
@@ -67,18 +67,18 @@ function writeTJCommission() {
     }
 
     //echo "payload:".print_r($tjpayload);
-    doPost($tjpayload, $tjEntity);
+    doPost($tjpayload, $gatlingEntity);
 }
 function GetInvoicePaymentByPaymentId($paymentid) {
 
     try {
         
         spl_autoload_register('invoicepayments_autoloader');
-        $tjEntity = new invoicepayment();
+        $gatlingEntity = new invoicepayment();
         $app = new iSDK;
         $app->cfgCon("connection");
 
-        $returnFields = $tjEntity->getSelectFieldsArray(TRUE);
+        $returnFields = $gatlingEntity->getSelectFieldsArray(TRUE);
         $query =array('PaymentId' => $paymentid);
         //echo "ReturnFields:".print_r($returnFields);
         //echo "query: ".print_r($query);

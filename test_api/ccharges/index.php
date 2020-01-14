@@ -13,7 +13,7 @@ function Get() {
     try {
 
         spl_autoload_register('ccharges_autoloader');
-        $tjEntity = new ccharge();
+        $gatlingEntity = new ccharge();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -28,7 +28,7 @@ function Get() {
         $queryString = str_replace('path=', '', $queryString);
         $queryParams = getUrlParms($queryString);
 
-        $returnFields = $tjEntity->getSelectFieldsArray(TRUE);
+        $returnFields = $gatlingEntity->getSelectFieldsArray(TRUE);
         //echo "return fields:".print_r($returnFields);
         $query = $queryParams;
         //echo "Query:".print_r($query);

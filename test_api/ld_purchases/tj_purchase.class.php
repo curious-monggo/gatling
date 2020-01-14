@@ -34,15 +34,15 @@ class tj_purchase extends GatlingEntity {
         return $sql;
     }
 
-    function getSelectClause ($conn, $tjEntity, $numberToReturn) {
+    function getSelectClause ($conn, $gatlingEntity, $numberToReturn) {
 
-        if ($tjEntity -> rid !== undefined) {
+        if ($gatlingEntity -> rid !== undefined) {
             $handle = $conn->prepare($this->whereClause.' FROM '.$this->tableName.' where rid = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> rid, PDO::PARAM_INT);
+            $handle->bindValue(1, $gatlingEntity -> rid, PDO::PARAM_INT);
         };
-        if ($tjEntity -> email != undefined) {
+        if ($gatlingEntity -> email != undefined) {
             $handle = $conn->prepare($this->whereClause.' FROM '.$this->tableName.' where email = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> email);
+            $handle->bindValue(1, $gatlingEntity -> email);
         };
         $handle->bindValue(2, $numberToReturn, PDO::PARAM_INT);
         return $handle;

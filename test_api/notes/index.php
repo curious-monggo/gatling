@@ -4,7 +4,7 @@ require '../base.php';
 
 function Post() {
     spl_autoload_register('notes_autoloader');
-    $tjEntity = new note();
+    $gatlingEntity = new note();
 
     $payload = "";
     
@@ -36,7 +36,7 @@ function Get() {
     try {
 
         spl_autoload_register('notes_autoloader');
-        $tjEntity = new note();
+        $gatlingEntity = new note();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -59,7 +59,7 @@ function Get() {
             $queryParams['ContactId'] = $result[0]["Id"];
         } 
 
-        $returnFields = $tjEntity->getSelectFieldsArray();
+        $returnFields = $gatlingEntity->getSelectFieldsArray();
         $query = $queryParams;
         $result = $app->dsQuery("ContactAction",100,0,$query,$returnFields);
 

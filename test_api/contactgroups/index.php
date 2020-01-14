@@ -7,7 +7,7 @@ require '../base.php';
 function Post() {
     try{
         spl_autoload_register('contactgroups_autoloader');
-        $tjEntity = new contactgroup();
+        $gatlingEntity = new contactgroup();
 
         $payload = "";
         $payload = getPayload();
@@ -49,7 +49,7 @@ function Get() {
     try {
         
         spl_autoload_register('contactgroups_autoloader');
-        $tjEntity = new contactgroup();
+        $gatlingEntity = new contactgroup();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -66,7 +66,7 @@ function Get() {
         //echo "qs: ".print_r($queryString);
         //$returnFields = array('Id','FirstName','LastName','Email','Phone1', 'Phone1Type', 'Groups', 'LeadSource', "_AFFemail", '_AFFphone', '_GiftCardPin');
 
-        $returnFields = $tjEntity->getSelectFieldsArray(TRUE);
+        $returnFields = $gatlingEntity->getSelectFieldsArray(TRUE);
 
         //$query = $queryParams;
         //echo "<br>query = ".print_r($returnFields)."<br>";
@@ -79,7 +79,7 @@ function Get() {
         // echo "Entered val POST: ".$_POST['val']." x</br>";
         // echo "querystring: ".$_SERVER['QUERY_STRING']." x</br>";
         // echo "params: ".print_r($queryParams)." x</br>";
-        // echo "properties: ".$tjEntity->getSelectClause()." x</br>";
+        // echo "properties: ".$gatlingEntity->getSelectClause()." x</br>";
         //$returnFields = array('Id','GroupDescription', 'GroupName');
         $query = array('GroupName' => '%');
         $result = $app->dsQuery("ContactGroup",1000,0,$query,$returnFields);

@@ -4,7 +4,7 @@ require '../base.php';
 
 function Post() {
     spl_autoload_register('contacts_autoloader');
-    $tjEntity = new contacts();
+    $gatlingEntity = new contacts();
 
     $payload = "";
     ouputHeader("405", "Method Not Allowed");
@@ -12,7 +12,7 @@ function Post() {
         $payload = getPayload();
         $payload["guid"] = generateGuid();
 
-        //doPost($payload, $tjEntity);
+        //doPost($payload, $gatlingEntity);
 
         //returnResponse("http://traveljolly.com/api/phone_requests/".$payload["guid"], false);
     }
@@ -32,14 +32,14 @@ function Get() {
     try {
 
         spl_autoload_register('emailaddstatus_autoloader');
-        $tjEntity = new emailaddstatus();
+        $gatlingEntity = new emailaddstatus();
         $app = new iSDK;
         $app->cfgCon("connection");
 
         $queryParams = undefined;
         parse_str($_SERVER['QUERY_STRING'], $queryParams);
 
-        $returnFields = $tjEntity->getSelectFieldsArray();
+        $returnFields = $gatlingEntity->getSelectFieldsArray();
         //$query = array('_AFFemail' => $queryParams['AFFemail']);
         if (isset($queryParams['id']) || $queryParams['id'] == '')
             unset($queryParams['id']);

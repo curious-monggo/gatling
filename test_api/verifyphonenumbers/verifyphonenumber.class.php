@@ -45,11 +45,11 @@ class verifyphonenumber extends GatlingEntity {
         $sql = $sql . join(', ', $columns) . ') VALUES(:'. join(', :', $columns) . ')';
         return $sql;
     }
-    function getSelectClause ($conn, $tjEntity, $numberToReturn) {
+    function getSelectClause ($conn, $gatlingEntity, $numberToReturn) {
 
-        if (isset($tjEntity -> international_format)) {
+        if (isset($gatlingEntity -> international_format)) {
             $handle = $conn->prepare($this->whereClause.' FROM '.$this->tableName.' where international_format = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> international_format);
+            $handle->bindValue(1, $gatlingEntity -> international_format);
         };
 
         $handle->bindValue(2, $numberToReturn, PDO::PARAM_INT);

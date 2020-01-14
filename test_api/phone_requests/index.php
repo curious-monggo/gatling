@@ -4,7 +4,7 @@ require '../base.php';
 
 function Post() {
     spl_autoload_register('tj_phone_requests_autoloader');
-    $tjEntity = new phonerequests();
+    $gatlingEntity = new phonerequests();
 
     $payload = "";
 
@@ -12,7 +12,7 @@ function Post() {
         $payload = getPayload();
         $payload["guid"] = generateGuid();
 
-        doPost($payload, $tjEntity);
+        doPost($payload, $gatlingEntity);
 
         returnResponse("http://traveljolly.com/api/phone_requests/".$payload["guid"], false);
     }
@@ -32,9 +32,9 @@ function Get() {
     try {
 
         spl_autoload_register('tj_phone_requests_autoloader');
-        $tjEntity = new phonerequests();
+        $gatlingEntity = new phonerequests();
 
-        $result = doGet($tjEntity);
+        $result = doGet($gatlingEntity);
 
     }
     catch(Exception $exception) {

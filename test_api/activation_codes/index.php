@@ -4,14 +4,14 @@ require '../base.php';
 
 function Post() {
     spl_autoload_register('tj_activation_code_autoloader');
-    $tjEntity = new activation_code();
+    $gatlingEntity = new activation_code();
 
     $payload = "";
     try {
 
         $payload = getPayload();
         $payload["guid"] = generateGuid();
-        $result = $tjEntity->Create($payload);
+        $result = $gatlingEntity->Create($payload);
         //$result is the insert query with parms not data
         //{"queryString":"INSERT INTO tj_activation_codes (first_name, last_name, activation_code, initial_value, guid) VALUES(:first_name, :last_name, :activation_code, :initial_value, :guid)"}
         
@@ -26,15 +26,15 @@ function Post() {
 }
 function Put() {
     spl_autoload_register('tj_activation_code_autoloader');
-    $tjEntity = new activation_code();
+    $gatlingEntity = new activation_code();
 
     $payload = "";
     try {
         $payload = getPayload();
 
-        $tjEntity->setMe();
+        $gatlingEntity->setMe();
 
-        $result = $tjEntity->Update($payload);
+        $result = $gatlingEntity->Update($payload);
 
         Get();
     }
@@ -48,11 +48,11 @@ function Get() {
     try {
 
         spl_autoload_register('tj_activation_code_autoloader');
-        $tjEntity = new activation_code();
+        $gatlingEntity = new activation_code();
 
-        $tjEntity->setMe();
-        //$result = doGet($tjEntity);
-        $result = $tjEntity-> Retrieve();
+        $gatlingEntity->setMe();
+        //$result = doGet($gatlingEntity);
+        $result = $gatlingEntity-> Retrieve();
 
     }
     catch(Exception $exception) {

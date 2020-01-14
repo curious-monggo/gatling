@@ -48,11 +48,11 @@ function lookupPhonenumber($anumber) {
     try {
 
         spl_autoload_register('verifyphonenumbers_autoloader');
-        $tjEntity = new verifyphonenumber();
+        $gatlingEntity = new verifyphonenumber();
 
-        $tjEntity -> international_format = $anumber;
+        $gatlingEntity -> international_format = $anumber;
 
-        $result = Fetch($tjEntity);
+        $result = Fetch($gatlingEntity);
 
     }
     catch(Exception $exception) {
@@ -97,10 +97,10 @@ function writeNumVerifyRecord($result) {
     try
     {
         spl_autoload_register('verifyphonenumbers_autoloader');
-        $tjEntity = new verifyphonenumber();
+        $gatlingEntity = new verifyphonenumber();
         $payload = $result;
-        $sql = $tjEntity->getInsertClause($payload);
-        $postResult = doPost($payload, $tjEntity);
+        $sql = $gatlingEntity->getInsertClause($payload);
+        $postResult = doPost($payload, $gatlingEntity);
         $result["rid"] = $postResult;
     }
     catch(Exception $exception) {

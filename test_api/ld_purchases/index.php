@@ -88,7 +88,7 @@ function GetContact($contactid) {
     try {
         
         spl_autoload_register('contacts_autoloader');
-        $tjEntity = new contact();
+        $gatlingEntity = new contact();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -187,11 +187,11 @@ function Delete() {
 }
 function writeTJPurchase($payload) {
     spl_autoload_register('ld_purchases_autoloader');
-    $tjEntity = new tj_purchase();
+    $gatlingEntity = new tj_purchase();
     // $tjpayload = getPayload();
         if (isset($payload["id"])) {
             unset($payload["id"]);
         }
-    doPost($payload, $tjEntity);
+    doPost($payload, $gatlingEntity);
 }
 ?>

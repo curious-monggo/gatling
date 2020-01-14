@@ -7,7 +7,7 @@ require '../base.php';
 function Post() {
 
     spl_autoload_register('begc_login_autoloader');
-    $tjEntity = new begc_login();
+    $gatlingEntity = new begc_login();
 
     $payload = "";
     try {
@@ -123,7 +123,7 @@ function Post() {
 
 function Put() {
     spl_autoload_register('begc_login_autoloader');
-    $tjEntity = new begc_login();
+    $gatlingEntity = new begc_login();
 
     $payload = "";
     try {
@@ -191,7 +191,7 @@ function Get() {
     try {
         
         spl_autoload_register('contacts_autoloader');
-        $tjEntity = new contact();
+        $gatlingEntity = new contact();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -208,7 +208,7 @@ function Get() {
         //echo "qs=> ".print_r($queryString);
         //$returnFields = array('Id','FirstName','LastName','Email','Phone1', 'Phone1Type', 'Groups', 'LeadSource', "_AFFemail", '_AFFphone', '_GiftCardPin');
         $excludeCustomFields = TRUE;
-        $returnFields = $tjEntity->getSelectFieldsArray($excludeCustomFields);
+        $returnFields = $gatlingEntity->getSelectFieldsArray($excludeCustomFields);
         if ($excludeCustomFields) {//so get custom fields from api
             $returnCustomFields = array('DataType', 'DefaultValue', 'FormId','GroupId', 'Id', 'Label', 'ListRows', 'Name', 'Values');
             $queryCustomFields = array('FormId' => -1);
@@ -229,7 +229,7 @@ function Get() {
         // echo "Entered val POST=> ".$_POST['val']." x</br>";
         // echo "querystring=> ".$_SERVER['QUERY_STRING']." x</br>";
         // echo "params=> ".print_r($queryParams)." x</br>";
-        // echo "properties=> ".$tjEntity->getSelectClause()." x</br>";
+        // echo "properties=> ".$gatlingEntity->getSelectClause()." x</br>";
 
 
     }
@@ -248,7 +248,7 @@ function GetContact($field_name, $field_value) {
     try {
         
         spl_autoload_register('begc_login_autoloader');
-        $tjEntity = new begc_login();
+        $gatlingEntity = new begc_login();
         $app = new iSDK;
         $app->cfgCon("connection");
 

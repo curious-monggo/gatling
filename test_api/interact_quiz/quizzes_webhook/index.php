@@ -4,7 +4,7 @@ require '../base.php';
 
 function Post() {
     spl_autoload_register('quizzes_autoloader');
-    $tjEntity = new quiz();
+    $gatlingEntity = new quiz();
 
     $payload = "";
 
@@ -16,9 +16,9 @@ function Post() {
         $payload["contact_id"] = $contactResult[0]["Id"];
         $payload["email"] = $contactResult[0]["Email"];
 
-        //$tjEntity->contact_id = = $contactResult[0]["Id"];
-        //$tjEntity->email = = $contactResult[0]["Email"];
-        doPost($payload, $tjEntity);
+        //$gatlingEntity->contact_id = = $contactResult[0]["Id"];
+        //$gatlingEntity->email = = $contactResult[0]["Email"];
+        doPost($payload, $gatlingEntity);
 
         returnResponse("http://traveljolly.com/api/quizzes/".$payload["guid"], false);
     }
@@ -43,7 +43,7 @@ function Get() {
     try {
 
         spl_autoload_register('quizzes_autoloader');
-        $tjEntity = new quiz();
+        $gatlingEntity = new quiz();
 
         if (isset($_GET["id"]) && !empty($_GET["id"])) {
             $id = $_GET["id"];
@@ -73,12 +73,12 @@ function Get() {
             }
         }
 
-        $tjEntity -> rid = $id;
-        $tjEntity -> email = $email;
-        $tjEntity -> contact_id = $contact_id;
-        $tjEntity -> guid = $guid;
-//echo "select:".$tjEntity -> rid;
-        $result = FetchData($tjEntity);
+        $gatlingEntity -> rid = $id;
+        $gatlingEntity -> email = $email;
+        $gatlingEntity -> contact_id = $contact_id;
+        $gatlingEntity -> guid = $guid;
+//echo "select:".$gatlingEntity -> rid;
+        $result = FetchData($gatlingEntity);
 //echo "RESUlt:".print_r($result);
         //$resultArray = stdToArray($result);
         //$resultArray = objectToArray($result);
@@ -103,20 +103,20 @@ function Get() {
      
     returnResponse($result);
 }
-function FetchData($tjEntity) {
+function FetchData($gatlingEntity) {
 
     $result = array(array("error" => " no results"));
     try {
-        $conn = new \PDO(   "mysql:host=$tjEntity->servername;dbname=$tjEntity->dbname", $tjEntity->username, $tjEntity->password,
+        $conn = new \PDO(   "mysql:host=$gatlingEntity->servername;dbname=$gatlingEntity->dbname", $gatlingEntity->username, $gatlingEntity->password,
                     array(
                         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
                         \PDO::ATTR_PERSISTENT => false
                     )
                 );
 
-        $handle = $tjEntity->getSelectClause($conn, $tjEntity, 100);
+        $handle = $gatlingEntity->getSelectClause($conn, $gatlingEntity, 100);
         //echo print_r($handle);
-        //echo print_r($tjEntity);
+        //echo print_r($gatlingEntity);
         $handle->execute();
 
         $result = $handle->fetchAll(\PDO::FETCH_OBJ);
@@ -168,7 +168,7 @@ function GetContact($email) {
     try {
         
         // spl_autoload_register('tj_begc_activation_codes_autoloader');
-        // $tjEntity = new begc_activation_code();
+        // $gatlingEntity = new begc_activation_code();
         $app = new iSDK;
         $app->cfgCon("connection");
 

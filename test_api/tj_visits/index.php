@@ -4,7 +4,7 @@ require '../base.php';
 
 function Post() {
     spl_autoload_register('tj_visits_autoloader');
-    $tjEntity = new tj_visit();
+    $gatlingEntity = new tj_visit();
 
     $payload = "";
 
@@ -12,7 +12,7 @@ function Post() {
         $payload = getPayload();
         $payload["guid"] = generateGuid();
 
-        doPost($payload, $tjEntity);
+        doPost($payload, $gatlingEntity);
 
         returnResponse("http://traveljolly.com/api/tj_visits/".$payload["guid"], false);
     }
@@ -36,7 +36,7 @@ function Get() {
     try {
 
         spl_autoload_register('tj_visits_autoloader');
-        $tjEntity = new tj_visit();
+        $gatlingEntity = new tj_visit();
 
         if (isset($_GET["id"]) && !empty($_GET["id"])) {
             $id = $_GET["id"];
@@ -56,11 +56,11 @@ function Get() {
             }
         }
 
-        $tjEntity -> rid = $id;
-        $tjEntity -> afmc = $afmc;
-        $tjEntity -> guid = $guid;
+        $gatlingEntity -> rid = $id;
+        $gatlingEntity -> afmc = $afmc;
+        $gatlingEntity -> guid = $guid;
 
-        $result = Fetch($tjEntity);
+        $result = Fetch($gatlingEntity);
 
         //$resultArray = stdToArray($result);
         //$resultArray = objectToArray($result);

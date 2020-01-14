@@ -4,7 +4,7 @@ require '../base.php';
 
 function Post() {
     spl_autoload_register('affiliates_autoloader');
-    $tjEntity = new affiliate();
+    $gatlingEntity = new affiliate();
 
     $payload = "";
     ouputHeader("405", "Method Not Allowed");
@@ -12,7 +12,7 @@ function Post() {
         $payload = getPayload();
         $payload["guid"] = generateGuid();
 
-        //doPost($payload, $tjEntity);
+        //doPost($payload, $gatlingEntity);
 
         //returnResponse("http://traveljolly.com/api/phone_requests/".$payload["guid"], false);
     }
@@ -32,7 +32,7 @@ function Get() {
     try {
 
         spl_autoload_register('affiliates_autoloader');
-        $tjEntity = new affiliate();
+        $gatlingEntity = new affiliate();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -55,7 +55,7 @@ function Get() {
             $queryParams['ContactId'] = $result[0]["Id"];
         } 
 
-        $returnFields = $tjEntity->getSelectFieldsArray();
+        $returnFields = $gatlingEntity->getSelectFieldsArray();
         $query = $queryParams;
         $result = $app->dsQuery("Affiliate",100,0,$query,$returnFields);
 

@@ -9,11 +9,11 @@ function Post() {
     $oldActivationCodes = "";
     $hasActivationCodes;
     spl_autoload_register('tj_begc_activation_codes_autoloader');
-    $tjEntity = new begc_activation_code();
+    $gatlingEntity = new begc_activation_code();
 
-    $tjEntity->setMe();
+    $gatlingEntity->setMe();
 
-    $activationCodeResult = GetBookingEngineGCActivationCodes($tjEntity->contactId);
+    $activationCodeResult = GetBookingEngineGCActivationCodes($gatlingEntity->contactId);
     if(isset($activationCodeResult[0]["_BookingEngineGCActivationCodes"])){
         $hasActivationCodes = true;
         $oldActivationCodes = $activationCodeResult[0]["_BookingEngineGCActivationCodes"];
@@ -27,7 +27,7 @@ function Post() {
 
 
             
-            $contactResult = GetContact($tjEntity->contactId);
+            $contactResult = GetContact($gatlingEntity->contactId);
             $payload["first_name"] =$contactResult[0]["FirstName"];
             $payload["last_name"] =$contactResult[0]["LastName"];
             $payload["email_address"] =$contactResult[0]["Email"];
@@ -44,15 +44,15 @@ function Post() {
             // echo ;
 
             
-            $result_retrieve = $tjEntity-> Retrieve();
+            $result_retrieve = $gatlingEntity-> Retrieve();
             $result_activation_codes_list = array();
             foreach($result_retrieve as $result_key => $result_value){
                 
                 if(isset($result_retrieve[$result_key]->rid) && isset($result_retrieve[$result_key]->activation_code)){
-                    $tjEntity->rid = $result_retrieve[$result_key]->rid;
+                    $gatlingEntity->rid = $result_retrieve[$result_key]->rid;
                     $payload["activation_code"] = $result_retrieve[$result_key]->activation_code;
                     
-                    $result_update = $tjEntity->Update($payload);
+                    $result_update = $gatlingEntity->Update($payload);
                     array_push($result_activation_codes_list, $result_retrieve[$result_key]->activation_code);
                     //update infusionsoft field
 
@@ -65,9 +65,9 @@ function Post() {
                     //         '_BookingEngineGCActivationCodes' => $payload['activation_code']
                     //     );
 
-                    //     $updateCon = $app->dsUpdate("Contact", $tjEntity->contactId, $updateMyGiftCard);
+                    //     $updateCon = $app->dsUpdate("Contact", $gatlingEntity->contactId, $updateMyGiftCard);
                     //     $responseMessage = "Activation code added";
-                    //     // $addResult = $app->grpAssign($tjEntity->contactId, 1149);
+                    //     // $addResult = $app->grpAssign($gatlingEntity->contactId, 1149);
                         
                     //     // if($addResult == true){
                     // 	// 	$responseMessage = "Activation code and tag 1149 added";
@@ -98,9 +98,9 @@ function Post() {
                     '_BookingEngineGCActivationCodes' => $comma_separated_activation_codes
                 );
 
-                $updateCon = $app->dsUpdate("Contact", $tjEntity->contactId, $updateMyGiftCard);
+                $updateCon = $app->dsUpdate("Contact", $gatlingEntity->contactId, $updateMyGiftCard);
                 $responseMessage = "Activation code/s added";
-                // $addResult = $app->grpAssign($tjEntity->contactId, 1149);
+                // $addResult = $app->grpAssign($gatlingEntity->contactId, 1149);
                 
                 // if($addResult == true){
                 // 	$responseMessage = "Activation code and tag 1149 added";
@@ -111,10 +111,10 @@ function Post() {
             }
             // var_export($comma_separated_activation_codes);
             // if(isset($result_retrieve[0]->rid) && isset($result_retrieve[0]->activation_code)){
-	        //     $tjEntity->rid = $result_retrieve[0]->rid;
+	        //     $gatlingEntity->rid = $result_retrieve[0]->rid;
 	        //     $payload["activation_code"] = $result_retrieve[0]->activation_code;
 	            
-	        //     $result_update = $tjEntity->Update($payload);
+	        //     $result_update = $gatlingEntity->Update($payload);
 
 	        //     //update infusionsoft field
 
@@ -127,9 +127,9 @@ function Post() {
 	        //             '_MyCardActivationCode' => $payload['activation_code']
 	        //         );
 
-	        //         $updateCon = $app->dsUpdate("Contact", $tjEntity->contactId, $updateMyGiftCard);
+	        //         $updateCon = $app->dsUpdate("Contact", $gatlingEntity->contactId, $updateMyGiftCard);
 	        //         $responseMessage = "Activation code added";
-	        //         $addResult = $app->grpAssign($tjEntity->contactId, 1149);
+	        //         $addResult = $app->grpAssign($gatlingEntity->contactId, 1149);
 	                
 	        //         if($addResult == true){
 			// 			$responseMessage = "Activation code and tag 1149 added";
@@ -159,15 +159,15 @@ function Post() {
 }
 function Put() {
     spl_autoload_register('tj_begc_activation_codes_autoloader');
-    $tjEntity = new begc_activation_code();
+    $gatlingEntity = new begc_activation_code();
 
     $payload = "";
     try {
         $payload = getPayload();
 
-        $tjEntity->setMe();
+        $gatlingEntity->setMe();
 
-        $result = $tjEntity->Update($payload);
+        $result = $gatlingEntity->Update($payload);
 
         Get();
     }
@@ -181,11 +181,11 @@ function Get() {
     try {
 
         spl_autoload_register('tj_begc_activation_codes_autoloader');
-        $tjEntity = new begc_activation_code();
+        $gatlingEntity = new begc_activation_code();
 
-        $tjEntity->setMe();
-        //$result = doGet($tjEntity);
-        $result = $tjEntity-> Retrieve();
+        $gatlingEntity->setMe();
+        //$result = doGet($gatlingEntity);
+        $result = $gatlingEntity-> Retrieve();
 
     }
     catch(Exception $exception) {
@@ -198,11 +198,11 @@ function Get() {
     // try {
 
     //     spl_autoload_register('tj_is_activation_code_autoloader');
-    //     $tjEntity = new is_activation_code();
+    //     $gatlingEntity = new is_activation_code();
 
-    //     $tjEntity->setMe();
+    //     $gatlingEntity->setMe();
 
-    //     $contactResult = GetContact($tjEntity->contactId);
+    //     $contactResult = GetContact($gatlingEntity->contactId);
     //     $payload["first_name"] =$contactResult[0]["FirstName"];
     //     $payload["last_name"] =$contactResult[0]["LastName"];
     //     $payload["email_address"] =$contactResult[0]["Email"];
@@ -216,14 +216,14 @@ function Get() {
 
     //     $payload["end_date"] = $currentDateTime->format('Y-m-d H:i:s');  
         
-    //     $tjEntity->rows = 1;
+    //     $gatlingEntity->rows = 1;
 
         
-    //     $result_retrieve = $tjEntity-> Retrieve();
-    //     $tjEntity->rid = $result_retrieve[0]->rid;
+    //     $result_retrieve = $gatlingEntity-> Retrieve();
+    //     $gatlingEntity->rid = $result_retrieve[0]->rid;
     //     $payload["activation_code"] = $result_retrieve[0]->activation_code;
         
-    //     $result_update = $tjEntity->Update($payload);
+    //     $result_update = $gatlingEntity->Update($payload);
 
     //     //update infusionsoft field
 
@@ -236,7 +236,7 @@ function Get() {
     //             '_MyCardActivationCode' => $payload['activation_code']
     //         );
 
-    //         $updateCon = $app->dsUpdate("Contact", $tjEntity->contactId, $updateMyGiftCard);
+    //         $updateCon = $app->dsUpdate("Contact", $gatlingEntity->contactId, $updateMyGiftCard);
     //     }
     //     catch(Exception $exception) {
     //         throw new Exception("error:".$exception->getMessage());
@@ -261,7 +261,7 @@ function GetContact($contactid) {
     try {
         
         spl_autoload_register('tj_begc_activation_codes_autoloader');
-        $tjEntity = new begc_activation_code();
+        $gatlingEntity = new begc_activation_code();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -286,7 +286,7 @@ function GetContact($contactid) {
 function GetBookingEngineGCActivationCodes($contactid) {
     try {
         spl_autoload_register('tj_begc_activation_codes_autoloader');
-        $tjEntity = new begc_activation_code();
+        $gatlingEntity = new begc_activation_code();
         $app = new iSDK;
         $app->cfgCon("connection");
 

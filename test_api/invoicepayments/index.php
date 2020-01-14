@@ -13,7 +13,7 @@ function Get() {
     try {
 
         spl_autoload_register('invoicepayments_autoloader');
-        $tjEntity = new invoicepayment();
+        $gatlingEntity = new invoicepayment();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -28,7 +28,7 @@ function Get() {
         $queryString = str_replace('path=', '', $queryString);
         $queryParams = getUrlParms($queryString);
 
-        $returnFields = $tjEntity->getSelectFieldsArray(TRUE);
+        $returnFields = $gatlingEntity->getSelectFieldsArray(TRUE);
         $query = $queryParams;
         $result = $app->dsQuery("InvoicePayment",100,0,$query,$returnFields);
 

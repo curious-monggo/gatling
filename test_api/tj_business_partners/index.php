@@ -7,17 +7,17 @@ function Post() {
 
 
         spl_autoload_register('tj_business_partners_autoloader');
-        $tjEntity = new tj_business_partner();
+        $gatlingEntity = new tj_business_partner();
         $exists = false;
         $payload = getAllPayload();
         echo "payload:".print_r($payload);
-        $tjEntity-> company_name = $payload["company_name"];
-        $result = lookupBizPartner($tjEntity);
+        $gatlingEntity-> company_name = $payload["company_name"];
+        $result = lookupBizPartner($gatlingEntity);
 
         if (empty($result)) {
             $payload["row_version"] = generateGuid();
             $payload["created_by"] = "tj_business_partner api";
-            $result = writeBizPartnerRecord($payload, $tjEntity);
+            $result = writeBizPartnerRecord($payload, $gatlingEntity);
             $writeResult["row_version"] = $payload["row_version"];
         }else{
             $exists = true;
@@ -44,13 +44,13 @@ function Put() {
 function Get() {
     ouputHeader("405", "Method Not Allowed");
 }
-function lookupBizPartner($tjEntity) {
+function lookupBizPartner($gatlingEntity) {
 
     $result = NULL;
     try {
 
 
-        $result = Fetch($tjEntity);
+        $result = Fetch($gatlingEntity);
 
     }
     catch(Exception $exception) {
@@ -61,12 +61,12 @@ function lookupBizPartner($tjEntity) {
     return $result;
 }
 
-function writeBizPartnerRecord($payload, $tjEntity) {
+function writeBizPartnerRecord($payload, $gatlingEntity) {
     try
     {
 
 
-        $result = doPost($payload, $tjEntity);
+        $result = doPost($payload, $gatlingEntity);
         //$result["rid"] = $postResult;
     }
     catch(Exception $exception) {

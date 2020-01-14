@@ -48,19 +48,19 @@ class phonerequests extends GatlingEntity {
         $sql = $sql . join(', ', $columns) . ') VALUES(:'. join(', :', $columns) . ')';
         return $sql;
     }
-    function getSelectClause ($conn, $tjEntity, $numberToReturn) {
+    function getSelectClause ($conn, $gatlingEntity, $numberToReturn) {
         
-        if ($tjEntity -> rid !== undefined) {
+        if ($gatlingEntity -> rid !== undefined) {
             $handle = $conn->prepare($this->whereClause.' FROM '.$this->tableName.' where rid = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> rid, PDO::PARAM_INT);
+            $handle->bindValue(1, $gatlingEntity -> rid, PDO::PARAM_INT);
         };
-        if ($tjEntity -> affiliate_email != undefined) {
+        if ($gatlingEntity -> affiliate_email != undefined) {
             $handle = $conn->prepare($this->whereClause.' FROM '.$this->tableName.' where affiliate_email = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> affiliate_email);
+            $handle->bindValue(1, $gatlingEntity -> affiliate_email);
         };
-        if ($tjEntity -> guid != undefined) {
+        if ($gatlingEntity -> guid != undefined) {
             $handle = $conn->prepare($this->whereClause.' FROM '.$this->tableName.' where guid = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> guid);
+            $handle->bindValue(1, $gatlingEntity -> guid);
         };
         $handle->bindValue(2, $numberToReturn, PDO::PARAM_INT);
         return $handle;

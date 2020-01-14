@@ -4,14 +4,14 @@ require '../base.php';
 
 function Post() {
     // spl_autoload_register('tj_is_activation_code_autoloader');
-    // $tjEntity = new is_activation_code();
+    // $gatlingEntity = new is_activation_code();
 
     // $payload = "";
     // try {
 
     //     $payload = getPayload();
     //     $payload["guid"] = generateGuid();
-    //     $result = $tjEntity->Create($payload);
+    //     $result = $gatlingEntity->Create($payload);
     //     //$result is the insert query with parms not data
     //     //{"queryString":"INSERT INTO tj_activation_codes (first_name, last_name, activation_code, initial_value, guid) VALUES(:first_name, :last_name, :activation_code, :initial_value, :guid)"}
         
@@ -32,11 +32,11 @@ function Post() {
     $payload = "";
     $responseMessage = "";
     spl_autoload_register('tj_is_activation_code_clone_autoloader');
-    $tjEntity = new is_activation_code_clone();
+    $gatlingEntity = new is_activation_code_clone();
 
-    $tjEntity->setMe();
+    $gatlingEntity->setMe();
 
-    $activationCodeResult = GetMyCardActivationCode($tjEntity->contactId);
+    $activationCodeResult = GetMyCardActivationCode($gatlingEntity->contactId);
     //echo $activationCodeResult[0]["_MyCardActivationCode"];
 
     if(!isset($activationCodeResult[0]["_MyCardActivationCode"])){
@@ -44,7 +44,7 @@ function Post() {
 
 
             
-            $contactResult = GetContact($tjEntity->contactId);
+            $contactResult = GetContact($gatlingEntity->contactId);
             $payload["first_name"] =$contactResult[0]["FirstName"];
             $payload["last_name"] =$contactResult[0]["LastName"];
             $payload["email_address"] =$contactResult[0]["Email"];
@@ -58,15 +58,15 @@ function Post() {
 
             $payload["end_date"] = $currentDateTime->format('Y-m-d H:i:s');  
             
-            $tjEntity->rows = 1;
+            $gatlingEntity->rows = 1;
 
             
-            $result_retrieve = $tjEntity-> Retrieve();
+            $result_retrieve = $gatlingEntity-> Retrieve();
             if(isset($result_retrieve[0]->rid) && isset($result_retrieve[0]->activation_code)){
-	            $tjEntity->rid = $result_retrieve[0]->rid;
+	            $gatlingEntity->rid = $result_retrieve[0]->rid;
 	            $payload["activation_code"] = $result_retrieve[0]->activation_code;
 	            
-	            $result_update = $tjEntity->Update($payload);
+	            $result_update = $gatlingEntity->Update($payload);
 
 	            //update infusionsoft field
 
@@ -79,7 +79,7 @@ function Post() {
 	                    '_MyCardActivationCode' => $payload['activation_code']
 	                );
 
-                    $updateCon = $app->dsUpdate("Contact", $tjEntity->contactId, $updateMyGiftCard);
+                    $updateCon = $app->dsUpdate("Contact", $gatlingEntity->contactId, $updateMyGiftCard);
                     /*
                     since update success of IFS returns the contact id, then check the response. 
                     Is it numeric, like 2080? Then success. If not then return the IFS error 
@@ -90,7 +90,7 @@ function Post() {
                     */
                     if(is_numeric($updateCon)) {
                         $responseMessage = "Activation code added";
-                        $addResult = $app->grpAssign($tjEntity->contactId, 1149);
+                        $addResult = $app->grpAssign($gatlingEntity->contactId, 1149);
                         
                         if($addResult == true){
                             $responseMessage = "Activation code and tag 1149 added";
@@ -124,15 +124,15 @@ function Post() {
 }
 function Put() {
     spl_autoload_register('tj_is_activation_code_clone_autoloader');
-    $tjEntity = new is_activation_code_clone();
+    $gatlingEntity = new is_activation_code_clone();
 
     $payload = "";
     try {
         $payload = getPayload();
 
-        $tjEntity->setMe();
+        $gatlingEntity->setMe();
 
-        $result = $tjEntity->Update($payload);
+        $result = $gatlingEntity->Update($payload);
 
         Get();
     }
@@ -146,11 +146,11 @@ function Get() {
     try {
 
         spl_autoload_register('tj_is_activation_code_clone_autoloader');
-        $tjEntity = new is_activation_code_clone();
+        $gatlingEntity = new is_activation_code_clone();
 
-        $tjEntity->setMe();
-        //$result = doGet($tjEntity);
-        $result = $tjEntity-> Retrieve();
+        $gatlingEntity->setMe();
+        //$result = doGet($gatlingEntity);
+        $result = $gatlingEntity-> Retrieve();
 
     }
     catch(Exception $exception) {
@@ -163,11 +163,11 @@ function Get() {
     // try {
 
     //     spl_autoload_register('tj_is_activation_code_autoloader');
-    //     $tjEntity = new is_activation_code();
+    //     $gatlingEntity = new is_activation_code();
 
-    //     $tjEntity->setMe();
+    //     $gatlingEntity->setMe();
 
-    //     $contactResult = GetContact($tjEntity->contactId);
+    //     $contactResult = GetContact($gatlingEntity->contactId);
     //     $payload["first_name"] =$contactResult[0]["FirstName"];
     //     $payload["last_name"] =$contactResult[0]["LastName"];
     //     $payload["email_address"] =$contactResult[0]["Email"];
@@ -181,14 +181,14 @@ function Get() {
 
     //     $payload["end_date"] = $currentDateTime->format('Y-m-d H:i:s');  
         
-    //     $tjEntity->rows = 1;
+    //     $gatlingEntity->rows = 1;
 
         
-    //     $result_retrieve = $tjEntity-> Retrieve();
-    //     $tjEntity->rid = $result_retrieve[0]->rid;
+    //     $result_retrieve = $gatlingEntity-> Retrieve();
+    //     $gatlingEntity->rid = $result_retrieve[0]->rid;
     //     $payload["activation_code"] = $result_retrieve[0]->activation_code;
         
-    //     $result_update = $tjEntity->Update($payload);
+    //     $result_update = $gatlingEntity->Update($payload);
 
     //     //update infusionsoft field
 
@@ -201,7 +201,7 @@ function Get() {
     //             '_MyCardActivationCode' => $payload['activation_code']
     //         );
 
-    //         $updateCon = $app->dsUpdate("Contact", $tjEntity->contactId, $updateMyGiftCard);
+    //         $updateCon = $app->dsUpdate("Contact", $gatlingEntity->contactId, $updateMyGiftCard);
     //     }
     //     catch(Exception $exception) {
     //         throw new Exception("error:".$exception->getMessage());
@@ -226,7 +226,7 @@ function GetContact($contactid) {
     try {
         
         spl_autoload_register('contacts_autoloader');
-        $tjEntity = new contact();
+        $gatlingEntity = new contact();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -253,7 +253,7 @@ function GetMyCardActivationCode($contactid) {
     try {
         
         spl_autoload_register('contacts_autoloader');
-        $tjEntity = new contact();
+        $gatlingEntity = new contact();
         $app = new iSDK;
         $app->cfgCon("connection");
 

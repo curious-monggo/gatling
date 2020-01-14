@@ -32,7 +32,7 @@ class quiz extends GatlingEntity {
         $sql = $sql . join(', ', $columns) . ') VALUES(:'. join(', :', $columns) . ')';
         return $sql;
     }
-    function getSelectClause ($conn, $tjEntity, $numberToReturn) {
+    function getSelectClause ($conn, $gatlingEntity, $numberToReturn) {
         $tableName = "quizview";
         $whereClause ="SELECT rid, 
         created_ts, 
@@ -52,24 +52,24 @@ class quiz extends GatlingEntity {
         score,
         total";
         $querySelected = FALSE;
-        if ($tjEntity -> rid !== NULL) {
+        if ($gatlingEntity -> rid !== NULL) {
             $handle = $conn->prepare($whereClause.' FROM '.$tableName.' where rid = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> rid, PDO::PARAM_INT);
+            $handle->bindValue(1, $gatlingEntity -> rid, PDO::PARAM_INT);
             $querySelected = TRUE;
         };
-        if ($tjEntity -> contact_id != NULL) {
+        if ($gatlingEntity -> contact_id != NULL) {
             $handle = $conn->prepare($whereClause.' FROM '.$tableName.' where contact_id = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> contact_id);
+            $handle->bindValue(1, $gatlingEntity -> contact_id);
             $querySelected = TRUE;
         };
-        if ($tjEntity -> email != NULL) {
+        if ($gatlingEntity -> email != NULL) {
             $handle = $conn->prepare($whereClause.' FROM '.$tableName.' where email = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> email);
+            $handle->bindValue(1, $gatlingEntity -> email);
             $querySelected = TRUE;
         };
-        if ($tjEntity -> guid != NULL) {
+        if ($gatlingEntity -> guid != NULL) {
             $handle = $conn->prepare($whereClause.' FROM '.$tableName.' where guid = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> guid);
+            $handle->bindValue(1, $gatlingEntity -> guid);
             $querySelected = TRUE;
         };
         if ($querySelected == FALSE) {

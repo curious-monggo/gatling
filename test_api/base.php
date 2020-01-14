@@ -27,15 +27,12 @@ function contacts_autoloader($class) {
 }
 function country_autoloader($class) { 
     include 'country/' . $class . '.class.php';
-    include_once 'country/' . $class . '.class.php';
 }
 function aff_info_autoloader($class) { 
     include 'aff_info/' . $class . '.class.php';
-    include_once 'aff_info/' . $class . '.class.php';
 }
 function begc_login_autoloader($class) { 
     include 'begc_login/' . $class . '.class.php';
-    include_once 'begc_login/' . $class . '.class.php';
 }
 function phone2_autoloader($class) { 
     include 'phone2/' . $class . '.class.php';
@@ -61,12 +58,10 @@ function tj_activation_code_autoloader($class) {
 /*LEO*/
 function tj_is_activation_code_autoloader($class) {
     include 'is_activation_codes/' . $class . '.class.php';
-    include_once 'is_activation_codes/' . $class . '.class.php';
 }
 
 function tj_is_activation_code_clone_autoloader($class) {
     include 'is_activation_codes_clone/' . $class . '.class.php';
-    include_once 'is_activation_codes_clone/' . $class . '.class.php';
 }
 
 function tj_begc_activation_codes_autoloader($class) {
@@ -99,7 +94,6 @@ function quizzes_autoloader($class) {
 //added this line to support new folder, interact quiz on 21/09/2019
 function interact_quiz_autoloader($class) {
     include 'interact_quiz/' . $class . '.class.php';
-    include_once 'interact_quiz/' . $class . '.class.php';
 }
 function tj_visits_autoloader($class) {
     include 'tj_visits/' . $class . '.class.php';
@@ -232,10 +226,10 @@ function isAuthorized($token)
 }
         
 
-function doPost($payload, $tjEntity) {
+function doPost($payload, $gatlingEntity) {
     try {
 
-        $conn = new \PDO(   "mysql:host=$tjEntity->servername;dbname=$tjEntity->dbname", $tjEntity->username, $tjEntity->password,
+        $conn = new \PDO(   "mysql:host=$gatlingEntity->servername;dbname=$gatlingEntity->dbname", $gatlingEntity->username, $gatlingEntity->password,
                     array(
                         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
                         \PDO::ATTR_PERSISTENT => false
@@ -243,7 +237,7 @@ function doPost($payload, $tjEntity) {
                 );
         
         $payload = (array) $payload;//convert payload to array for processing
-        $sql = $tjEntity->getInsertClause($payload);
+        $sql = $gatlingEntity->getInsertClause($payload);
         $prep = $conn->prepare($sql);
         foreach($payload as $key=>$val){
             $prep->bindValue($key, $val);
@@ -263,7 +257,7 @@ function doPost($payload, $tjEntity) {
     }
     return $result;
 }
-function doGet($tjEntity) {
+function doGet($gatlingEntity) {
     $id = null;
     $email = null;
     $guid = null;
@@ -310,11 +304,11 @@ function doGet($tjEntity) {
         // echo "params: ".print_r($queryParams)." x</br>";
         
 
-        $tjEntity -> rid = $id;
-        $tjEntity -> affiliate_email = $email;
-        $tjEntity -> guid = $guid;
-        $tjEntity -> prospect_phone = $prospect_phone;
-        $result = Fetch($tjEntity);
+        $gatlingEntity -> rid = $id;
+        $gatlingEntity -> affiliate_email = $email;
+        $gatlingEntity -> guid = $guid;
+        $gatlingEntity -> prospect_phone = $prospect_phone;
+        $result = Fetch($gatlingEntity);
     }
     catch(Exception $exception) {
         throw $exception;
@@ -489,20 +483,20 @@ function getTinyUrl($urlToShorten, $keyWord, $title) {
     }
     return $data->shorturl." not shortened".$urlToShorten;
 }
-function Fetch($tjEntity) {
+function Fetch($gatlingEntity) {
 
     $result = array(array("error" => " no results"));
     try {
-        $conn = new \PDO(   "mysql:host=$tjEntity->servername;dbname=$tjEntity->dbname", $tjEntity->username, $tjEntity->password,
+        $conn = new \PDO(   "mysql:host=$gatlingEntity->servername;dbname=$gatlingEntity->dbname", $gatlingEntity->username, $gatlingEntity->password,
                     array(
                         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
                         \PDO::ATTR_PERSISTENT => false
                     )
                 );
 
-        $handle = $tjEntity->getSelectClause($conn, $tjEntity, 100);
+        $handle = $gatlingEntity->getSelectClause($conn, $gatlingEntity, 100);
         //echo print_r($handle);
-        //echo print_r($tjEntity);
+        //echo print_r($gatlingEntity);
         $handle->execute();
 
         $result = $handle->fetchAll(\PDO::FETCH_OBJ);

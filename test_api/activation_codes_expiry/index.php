@@ -7,13 +7,13 @@ function Post() {
     $payload = "";
     $responseMessage = "";
     spl_autoload_register('tj_activation_codes_expiry_autoloader');
-    $tjEntity = new activation_codes_expiry();
+    $gatlingEntity = new activation_codes_expiry();
 
-    $tjEntity->setMe();
-    if(isset($tjEntity->contactId)){
-        $activationCodeResult = GetMyCardActivationCode($tjEntity->contactId);
+    $gatlingEntity->setMe();
+    if(isset($gatlingEntity->contactId)){
+        $activationCodeResult = GetMyCardActivationCode($gatlingEntity->contactId);
         // var_export($activationCodeResult);
-        if($activationCodeResult[0]["_ActivationCodeExpirationDate"] && isset($tjEntity->contactId)){
+        if($activationCodeResult[0]["_ActivationCodeExpirationDate"] && isset($gatlingEntity->contactId)){
             $expirationDate = $activationCodeResult[0]["_ActivationCodeExpirationDate"];
             date_default_timezone_set("America/New_York");
             $expirationDateTime = new DateTime($expirationDate);
@@ -41,7 +41,7 @@ function Post() {
     // foreach($activationCodeResult as $key => $value) {
     //     if(!$activationCodeResult[$key]["_MyCardActivationCode"]){
     //         try {
-    //             $contactResult = GetContact($tjEntity->contactId);
+    //             $contactResult = GetContact($gatlingEntity->contactId);
     //             $payload["first_name"] =$contactResult[$key]["FirstName"];
     //             $payload["last_name"] =$contactResult[$key]["LastName"];
     //             $payload["email_address"] =$contactResult[$key]["Email"];
@@ -55,14 +55,14 @@ function Post() {
     
     //             $payload["end_date"] = $currentDateTime->format('Y-m-d H:i:s');  
                 
-    //             $tjEntity->rows = 1;
+    //             $gatlingEntity->rows = 1;
     
                 
-    //             $result_retrieve = $tjEntity-> Retrieve();
-    //             $tjEntity->rid = $result_retrieve[0]->rid;
+    //             $result_retrieve = $gatlingEntity-> Retrieve();
+    //             $gatlingEntity->rid = $result_retrieve[0]->rid;
     //             $payload["activation_code"] = $result_retrieve[0]->activation_code;
                 
-    //             $result_update = $tjEntity->Update($payload);
+    //             $result_update = $gatlingEntity->Update($payload);
     
     //             //update infusionsoft field
     
@@ -75,7 +75,7 @@ function Post() {
     //                     '_MyCardActivationCode' => $payload['activation_code']
     //                 );
     
-    //                 $updateCon = $app->dsUpdate("Contact", $tjEntity->contactId, $updateMyGiftCard);
+    //                 $updateCon = $app->dsUpdate("Contact", $gatlingEntity->contactId, $updateMyGiftCard);
     //                 $responseMessage = "Activation code added";
     //             }
     //             catch(Exception $exception) {
@@ -99,15 +99,15 @@ function Post() {
 }
 function Put() {
     spl_autoload_register('tj_activation_codes_expiry_autoloader');
-    $tjEntity = new activation_codes_expiry();
+    $gatlingEntity = new activation_codes_expiry();
 
     $payload = "";
     try {
         $payload = getPayload();
 
-        $tjEntity->setMe();
+        $gatlingEntity->setMe();
 
-        $result = $tjEntity->Update($payload);
+        $result = $gatlingEntity->Update($payload);
 
         Get();
     }
@@ -121,11 +121,11 @@ function Get() {
     // try {
 
     //     spl_autoload_register('tj_activation_codes_expiry_autoloader');
-    //     $tjEntity = new activation_codes_expiry();
+    //     $gatlingEntity = new activation_codes_expiry();
 
-    //     $tjEntity->setMe();
-    //     //$result = doGet($tjEntity);
-    //     $result = $tjEntity-> Retrieve();
+    //     $gatlingEntity->setMe();
+    //     //$result = doGet($gatlingEntity);
+    //     $result = $gatlingEntity-> Retrieve();
 
     // }
     // catch(Exception $exception) {
@@ -137,11 +137,11 @@ function Get() {
     $payload = "";
     $responseMessage = "";
     spl_autoload_register('tj_activation_codes_expiry_autoloader');
-    $tjEntity = new activation_codes_expiry();
+    $gatlingEntity = new activation_codes_expiry();
 
-    $tjEntity->setMe();
-    if(isset($tjEntity->contactId)){
-        $activationCodeResult = GetMyCardActivationCode($tjEntity->contactId);
+    $gatlingEntity->setMe();
+    if(isset($gatlingEntity->contactId)){
+        $activationCodeResult = GetMyCardActivationCode($gatlingEntity->contactId);
         //var_export($activationCodeResult);
         if(isset($activationCodeResult[0]["_ActivationCodeExpirationDate"])){
             $expirationDate = $activationCodeResult[0]["_ActivationCodeExpirationDate"];
@@ -179,7 +179,7 @@ function GetContact($contactid) {
     try {
         
         spl_autoload_register('tj_activation_codes_expiry_autoloader');
-        $tjEntity = new activation_codes_expiry();
+        $gatlingEntity = new activation_codes_expiry();
         $app = new iSDK;
         $app->cfgCon("connection");
 
@@ -204,7 +204,7 @@ function GetMyCardActivationCode($contactid) {
     try {
         
         spl_autoload_register('tj_activation_codes_expiry_autoloader');
-        $tjEntity = new activation_codes_expiry();
+        $gatlingEntity = new activation_codes_expiry();
         $app = new iSDK;
         $app->cfgCon("connection");
 

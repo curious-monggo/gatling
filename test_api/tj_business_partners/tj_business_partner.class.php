@@ -50,11 +50,11 @@ class tj_business_partner extends GatlingEntity {
         $sql = $sql . join(', ', $columns) . ') VALUES(:'. join(', :', $columns) . ')';
         return $sql;
     }
-    function getSelectClause ($conn, $tjEntity, $numberToReturn) {
+    function getSelectClause ($conn, $gatlingEntity, $numberToReturn) {
 
-        if (isset($tjEntity -> company_name)) {
+        if (isset($gatlingEntity -> company_name)) {
             $handle = $conn->prepare($this->whereClause.' FROM '.$this->tableName.' where company_name = ? limit ?');
-            $handle->bindValue(1, $tjEntity -> company_name);
+            $handle->bindValue(1, $gatlingEntity -> company_name);
         };
 
         $handle->bindValue(2, $numberToReturn, PDO::PARAM_INT);
