@@ -25,6 +25,9 @@ function defineIfsConfig($app_name, $infusionsoft_api_key){
 function contacts_autoloader($class) { 
     include 'contacts/' . $class . '.class.php';
 }
+function unique_codes_autoloader($class) { 
+    include 'unique_code/' . $class . '.class.php';
+}
 // function country_autoloader($class) { 
 //     include 'country/' . $class . '.class.php';
 // }
